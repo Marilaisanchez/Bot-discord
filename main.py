@@ -40,6 +40,12 @@ async def luck(ctx):
     """Flips a coin/chooses randomly "TAILS" OR "HEADS" (*coin)"""
     await ctx.send(l.flip_coin())
 
+#Generates an emoji
+@bot.command(name="emoji")
+async def caras(ctx):
+    """Generates an emoji"""
+    await ctx.send(l.emoji())
+
 #Adds numbers (*add 2 4)
 @bot.command(name = "add")
 async def add_numbers(ctx, left: int, right: int):
