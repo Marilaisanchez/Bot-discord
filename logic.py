@@ -7,7 +7,7 @@ def contra(largo):
         password += r.choice(elements)
     return password
 
-def emoji():
+def random_emoji():
     emoji = ["\U0001f600", "\U0001f642", "\U0001F606", "\U0001F923"]
     return r.choice(emoji)
 
@@ -60,3 +60,62 @@ def tick_logic(ctx, correct: bool):
     except discord.HTTPException:
         return None
 
+def generate_emoji(emoji_name):
+    emoji_dict = {
+        "smile": "😊",
+        "laughing": "😆",
+        "wink": "😉",
+        "blush": "😊",
+        "cool": "😎",
+        "cry": "😭",
+        "angry": "😡",
+        "surprised": "😲",
+        "thinking": "🤔",
+        "sunglasses": "🕶️",
+        "sleeping": "😴",
+        "relieved": "😌",
+        "party": "🥳",
+        "clown": "🤡",
+        "nerd": "🤓",
+        "sick": "🤒",
+        "devil": "😈",
+        "skull": "💀",
+        "heart": "❤️",
+        "star": "⭐",
+        "rocket": "🚀",
+        "sun": "☀️",
+        "moon": "🌙",
+        "fire": "🔥",
+        "alien": "👽",
+        "cat": "🐱",
+        "dog": "🐶",
+        "pizza": "🍕",
+        "cake": "🎂",
+        "flower": "🌸",
+        "car": "🚗",
+        "bicycle": "🚲",
+        "computer": "💻",
+        "book": "📖",
+        "music": "🎵",
+        "camera": "📸",
+        "gift": "🎁"
+    }
+
+    return emoji_dict.get(emoji_name.lower(), "Emoji not found. Try with another one.")
+
+def piedra_papel_tijera(user_choice):
+    choices = ["piedra", "papel", "tijera"]
+    bot_choice = r.choice(choices)
+    
+    if user_choice.lower() not in choices:
+        return "Por favor, elige entre 'piedra', 'papel' o 'tijera'."
+    
+    if user_choice.lower() == bot_choice:
+        return f"Ambos elegimos {bot_choice}. ¡Es un empate!"
+    
+    if (user_choice.lower() == "piedra" and bot_choice == "tijera") or \
+       (user_choice.lower() == "papel" and bot_choice == "piedra") or \
+       (user_choice.lower() == "tijera" and bot_choice == "papel"):
+        return f"Tú elegiste {user_choice}, yo elegí {bot_choice}. ¡Ganaste!"
+    
+    return f"Tú elegiste {user_choice}, yo elegí {bot_choice}. ¡Perdiste!"

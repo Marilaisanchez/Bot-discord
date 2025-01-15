@@ -41,10 +41,10 @@ async def luck(ctx):
     await ctx.send(l.flip_coin())
 
 #Generates an emoji
-@bot.command(name="emoji")
-async def caras(ctx):
-    """Generates an emoji"""
-    await ctx.send(l.emoji())
+@bot.command(name = "random_emoji")
+async def random_emoji(ctx):
+    """Generates an emoji (*random_emoji)"""
+    await ctx.send(l.random_emoji())
 
 #Adds numbers (*add 2 4)
 @bot.command(name = "add")
@@ -88,7 +88,7 @@ async def is_bot_cool(ctx):
 #Throws x amount of dice and adds the results
 @bot.command(name="roll")
 async def roll(ctx, dice: str):
-    """Rolls a dice in NdN format."""
+    """Rolls a dice in NdN format. (*roll 2d6)"""
     try:
         result = l.roll(dice) 
         await ctx.send(f'{result}')  
@@ -98,7 +98,21 @@ async def roll(ctx, dice: str):
 #Guess a random number from 1 to 6.
 @bot.command(name = "guess")
 async def guess(ctx, number: int):
-    """Guess a random number from 1 to 6."""
+    """Guess a random number from 1 to 6 (*guess 3)"""
     await l.guess_logic(ctx, number)
+
+#Generates an especific emoji ("emoji heart")
+@bot.command(name = "emoji")
+async def generate_emoji(ctx, emoji_name: str):
+    """Generates an especific emoji (*emoji heart)"""
+    emoji = l.generate_emoji(emoji_name)
+    await ctx.send(emoji)
+
+#Piedra, papel o tijera
+@bot.command(name = "ppt")
+async def ppt(ctx, user_choice: str):
+    """Piedra, papel o tijera (*ppt tijera)"""
+    result = l.piedra_papel_tijera(user_choice)
+    await ctx.send(result)
 
 bot.run(token)
