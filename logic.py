@@ -1,4 +1,4 @@
-import random as r, string as s, discord
+import random as r, string as s, discord, os
 
 def contra(largo):
     elements = s.ascii_letters+s.ascii_lowercase+s.ascii_uppercase+s.digits+s.punctuation
@@ -119,3 +119,14 @@ def piedra_papel_tijera(user_choice):
         return f"Tú elegiste {user_choice}, yo elegí {bot_choice}. ¡Ganaste!"
     
     return f"Tú elegiste {user_choice}, yo elegí {bot_choice}. ¡Perdiste!"
+
+def meme():
+    with open("IMG/meme1.jpg", "rb") as IMG:
+        pic = discord.File(IMG)
+    return (pic)
+
+def momo():
+    listmeme = r.choice(os.listdir("IMG"))
+    with open(f"IMG/{listmeme}", "rb") as IMG:
+        pic = discord.File(IMG)
+    return (pic)

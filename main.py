@@ -1,4 +1,4 @@
-import discord, os, logic as l, random as r
+import discord, os, logic as l, random as r, commandapi as ca
 from dotenv import load_dotenv
 from discord.ext import commands
 
@@ -114,5 +114,20 @@ async def ppt(ctx, user_choice: str):
     """Piedra, papel o tijera (*ppt tijera)"""
     result = l.piedra_papel_tijera(user_choice)
     await ctx.send(result)
+
+@bot.command(name = "meme")
+async def memes(ctx):
+    a = l.meme()
+    await ctx.send(file = a)
+
+@bot.command(name = "momo")
+async def memes(ctx):
+    a = l.momo()
+    await ctx.send(file = a)
+
+@bot.command(name = "duck")
+async def ducks(ctx):
+    a = ca.duck_image()
+    await ctx.send(a)
 
 bot.run(token)
