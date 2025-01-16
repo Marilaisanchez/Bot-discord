@@ -130,3 +130,23 @@ def momo():
     with open(f"IMG/{listmeme}", "rb") as IMG:
         pic = discord.File(IMG)
     return (pic)
+
+MEMES_CATEGORIES = {
+    "cats": "./memes/cats/",
+    "dogs": "./memes/dogs/",
+    "movies": "./memes/movies/"
+}
+
+def categ_memes(categoria):
+    if categoria not in MEMES_CATEGORIES:
+        return None
+
+    folder_path = MEMES_CATEGORIES[categoria]
+    images = [f for f in os.listdir(folder_path)]
+
+    if images:
+        meme_image = r.choice(images)
+        file_path = os.path.join(folder_path, meme_image)
+        return file_path
+    else:
+        return None

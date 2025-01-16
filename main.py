@@ -115,19 +115,36 @@ async def ppt(ctx, user_choice: str):
     result = l.piedra_papel_tijera(user_choice)
     await ctx.send(result)
 
+#Generates the same meme
 @bot.command(name = "meme")
 async def memes(ctx):
+    """Generates the same meme (*meme)"""
     a = l.meme()
     await ctx.send(file = a)
 
+#Generates random meme
 @bot.command(name = "momo")
 async def memes(ctx):
+    """Generates random memes (*momo)"""
     a = l.momo()
     await ctx.send(file = a)
 
+#Generates duck photos
 @bot.command(name = "duck")
 async def ducks(ctx):
+    """Generates duck photos (*duck)"""
     a = ca.duck_image()
     await ctx.send(a)
+
+#Sends a meme of an especific category
+@bot.command(name = "memes")
+async def meme(ctx, categoria: str):
+    """Sends a meme of an especific category (*memes dogs)"""
+    meme_path = l.categ_memes(categoria)
+    if meme_path:
+        with open(meme_path, "rb") as file:
+            await ctx.send(file=discord.File(file, filename=os.path.basename(meme_path)))
+    else:
+        await ctx.send(f"Category not found '{categoria}'.")
 
 bot.run(token)
