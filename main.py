@@ -1,4 +1,4 @@
-import discord, os, logic as l, random as r, commandapi as ca
+import discord, os, logic as l, random as r, commandapi as ca, ambiente as am
 from dotenv import load_dotenv
 from discord.ext import commands
 
@@ -147,4 +147,18 @@ async def meme(ctx, categoria: str):
     else:
         await ctx.send(f"Category not found '{categoria}'.")
 
+@bot.command(name = "eco")
+async def ecologia(ctx, opc:int):
+    if opc == 1:
+        await ctx.send(embed = am.sol_emisión_gases())
+
+    elif opc == 2:
+        await ctx.send(embed = am.sol_calentamientoglo())
+
+    elif opc == 3:
+        await ctx.send(embed = am.consejos_rrr())
+
+    else:
+        await ctx.send("Esta opción no existe")
+      
 bot.run(token)
