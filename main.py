@@ -149,6 +149,7 @@ async def meme(ctx, categoria: str):
 
 @bot.command(name = "eco")
 async def ecologia(ctx, opc:int):
+    """Generates a solution or recommendations to reduce pollution"""
     if opc == 1:
         await ctx.send(embed = am.sol_emisión_gases())
 
