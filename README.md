@@ -1,6 +1,7 @@
 Este bot utiliza el prefijo "*" para ejecutar todos sus comandos.
 
 Comandos disponibles en este bot:
+
 add: Agrega números (*add 2 4)
 choose: Elige una opción en una lista (*choose mom dad sis)
 coin: Lanza una moneda/elige aleatoriamente "CRUZ" O "CARA" (*coin)
