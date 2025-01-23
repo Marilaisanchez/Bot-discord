@@ -1,4 +1,4 @@
-Este bot utiliza el prefijo "*" para ejecutar todos sus comandos.
+Bienvenidos!! Este bot se llama Juan e utiliza el prefijo "*" para ejecutar todos sus comandos.
 
 Comandos disponibles en este bot:
 
