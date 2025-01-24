@@ -1,4 +1,4 @@
-Bienvenidos!! Este bot se llama Juan e utiliza el prefijo "*" para ejecutar todos sus comandos. Además, todos sus comandos están en inglés al igual que toda la información extra.
+Bienvenidos!! Este bot se llama Juan e utiliza el prefijo "*" para ejecutar todos sus comandos. Además, casi todos sus comandos están en inglés al igual que toda la información extra.
 
 Comandos disponibles en este bot:
 
