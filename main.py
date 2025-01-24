@@ -8,7 +8,7 @@ token = os.getenv("dt")
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='*', intents=intents)
+bot = commands.Bot(command_prefix='*', intents=intents, help_command=None)
 
 #Shows in the console that the bot has logged in Discord 
 @bot.event
@@ -19,7 +19,7 @@ async def on_ready():
 @bot.command()
 async def hello(ctx):
     """El bot se presenta (*hello)"""
-    await ctx.send(f'Hola, soy un bot {bot.user}!')
+    await ctx.send(f'¡Hola! Soy {bot.user}! Un bot. ¿En qué puedo ayudarte hoy?')
 
 #Repeats heh x amount of times (*heh 10)
 @bot.command()
@@ -161,5 +161,54 @@ async def ecologia(ctx, opc:int):
 
     else:
         await ctx.send("Esta opción no existe")
-      
+
+help_categories = {
+    "⚙️ General Commands": [
+        ("*hello", "El bot se presenta"),
+        ("*help", "Shows the help menu"),
+        ("*joined <@user>", "Writes the date and hour a member joined"),
+],
+
+    "🛠️ Useful Commands": [
+        ("*add <num1> <num2>", "Adds numbers"),
+        ("*cool <subcommand>", "Checks if a subcommand has been invoked or not"),
+        ("*eco <number/problematic>", "Generates a solution or recommendations to reduce pollution"),
+        ("*repeat <times> <phrase>", "Repeats a phrase or number x times"),
+        ("*psw <length>", "Generates a password with x items"),
+        ("*choose <list>", "Chooses one chooice in a list"),
+],
+
+    "🎉 Fun Commands": [
+        ("*duck", "Generates duck photos"),
+        ("*emoji <category>", "Generates an especific emoji"),
+        ("*heh <times>", "Repeats heh x amount of times"),
+        ("*meme", "Generates the same meme"),
+        ("*memes <category>", "Sends a meme of a specific category"),
+        ("*momo", "Generates random memes"),
+        ("*random_emoji", "Generates an emoji"),
+],
+    
+    "🎮 Games": [
+        ("*guess <number>", "Guess a random number from 1 to 6"),
+        ("*ppt <choice>", "Play rock, paper, scissors"),
+        ("*roll <NdN>", "Rolls a dice in NdN format"),
+        ("*coin", "Flips a coin/chooses randomly TAILS OR HEADS"),
+    ],
+    
+    "Type *help <command> to find more info and examples of the command.":[],
+}
+
+@bot.command(name="help")
+async def help(ctx, command=None):
+    """Muestra el mensaje de ayuda con los comandos disponibles o detalles de un comando específico."""
+    if command:  # Si el usuario pasa un comando específico
+        embed = l.create_command_help_embed(command.lower())  # Convertir a minúsculas para evitar problemas de mayúsculas
+        if embed:
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send(f"No help found for the command: `{command}`.")
+    else:  # Si no pasa ningún comando, muestra el menú general
+        embed = l.create_help_embed(help_categories)
+        await ctx.send(embed=embed)
+
 bot.run(token)
